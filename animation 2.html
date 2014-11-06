@@ -1,0 +1,242 @@
+<html>
+<head>
+</head>
+<style type="text/css">
+body
+{
+	background: #EDEDED;
+	font-family: 'Calibri','Arial';
+}
+.anim
+{
+	background: #FFF;
+	z-index: 1;
+	position: relative;
+	width:300px;
+	height: 300px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 10px #000;
+	margin:200px auto 0px auto;
+	transition:all 0.5s ease-in-out;
+	border-radius: 100%;
+}
+/*.anim:hover .hide
+{
+	margin-top:-70;
+}*/
+.plus
+{
+	width: 50px;
+	height: 50px;
+	opacity:0.5;
+	cursor:pointer;
+	z-index: 1;
+	position:absolute;
+	top:250;
+	left:125;
+	transition:all 0.5s ease-in-out;
+}
+.plus:hover
+{
+	opacity: 1;
+}
+#w1,#w2,#w3,#w4,#w5,#w6
+{
+	display:inline-block;
+	transition:all 0.5s ease-in-out;
+}
+#w3
+{
+	border:2px solid #FFF;
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+}
+.anim:hover #w1
+{
+	transform:translate(-45px,-30px) rotate(-25deg);
+}
+.hide
+{
+	text-align: center;
+	//line-height: 11;
+	color: #FFF;
+	font-size: 28px;
+	top: 0;
+	width: 300px;
+	height: 300px;
+	background: #0098f9;
+	border-radius: 100%;
+	position:absolute;
+	z-index:2;
+	transition:all 0.5s ease-in-out;
+}
+.hide .text
+{
+	width:180px;
+	height:40px;
+	margin:130px auto;
+	position: relative;
+	-webkit-box-reflect:none;
+	transition:all 0.5s ease-in-out;
+}
+.reflect
+{
+	-webkit-box-reflect:below -15px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.2, transparent), to(white)) !important;
+}
+.content
+{
+	padding: 10px;
+	width: inherit;
+	height: inherit;
+	display:none;
+	position:absolute;
+	text-align: left;
+	top: 0;
+}
+.content p
+{
+	width:75%;
+	height:75%;
+	padding: 5px;
+	margin: 17% auto 0 auto;
+}
+#hide
+{
+	color:#0098f9;
+	position: absolute;
+	font-size: 28px;
+	cursor: pointer;
+	float: left;
+	display:none;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.anim').hover(function(){
+		if(!$('#hide').hasClass('clicked'))
+		{
+			$('.hide').css({
+					"top":"-70"
+				});
+			/*$('.hide .span').css({
+				"margin-top":"130px",
+					"letter-spacing":"15px",
+					"font-size":"34px",
+				});*/
+			//$('.hide .text').addClass('reflect');
+			$('#w1').css({
+				"transform":"translate(20px,-54px) rotate(-95deg) scale(3.5)"
+			});
+			$('#w2').css({
+				"transform":"translate(-3px,-20px) rotate(-180deg)"
+			});
+			$('#w3').css({
+				"transform":"translate(0px,-10px) scale(6.3)",
+				"border":"1px solid #FFF"
+			});
+			$('#w4').css({
+				"transform":"translate(-14px,4px) rotate(-90deg) scale(1.3)",
+				"text-transform":"uppercase"
+			});
+			$('#w5').css({
+				"transform":"translate(-8px,-20px) rotate(180deg)"
+			});
+			$('#w6').css({
+				"transform":"translate(-35px,35px) rotate(90deg) scale(1.8)",
+				"text-transform":"uppercase"
+			});
+		}
+		else
+		{
+			$('.hide').css({
+					"top":"-230"
+				});
+			/*$('.hide .span').css({
+				"margin-top":"130px",
+					"letter-spacing":"15px",
+					"font-size":"34px",
+				});*/
+		}
+	},function(){
+		if(!$('#hide').hasClass('clicked'))
+		{
+			$('.hide').css({
+					"top":"-0"
+				});
+			/*$('.hide .span').css({
+				"margin-top":"140px",
+					"letter-spacing":"0px",
+					"font-size":"28px"
+			});*/
+			//$('.hide .text').removeClass('reflect');
+			$('#w1').css({
+				"transform":"translate(0px,0px) rotate(0deg)"
+			});
+			$('#w2').css({
+				"transform":"translate(0px,0px) rotate(0deg)"
+			});
+			$('#w3').css({
+				"transform":"translate(0px,0px) scale(1)",
+				"border":"2px solid #FFF"
+			});
+			$('#w4').css({
+				"transform":"translate(0px,0px) rotate(0deg)",
+				"text-transform":"lowercase"
+			});
+			$('#w5').css({
+				"transform":"translate(0px,0px) rotate(0deg)"
+			});
+			$('#w6').css({
+				"transform":"translate(0px,0px) rotate(0deg)",
+				"text-transform":"lowercase"
+			});
+		}
+		else
+		{
+			$('.hide').css({
+					"top":"-230"
+		});
+		}
+	});
+	$('.plus').click(function(){
+		if(!$('#hide').hasClass('clicked'))
+		{
+			$('.plus').css({"transform":"rotate(45deg)"});
+			$('.content').fadeIn(2000);
+			$('.hide').animate({
+				"top":"-230",
+				"box-shadow":"0px 0px 8px #000"
+			},"fast");
+			$('#hide').addClass('clicked');
+		}
+		else
+		{
+			$('.plus').css({"transform":"rotate(0deg)"});
+			$('.content').fadeOut(1000);
+			$('.hide').animate({
+				"top":"0",
+				"box-shadow":"none"
+			},"slow");
+			$('#hide').removeClass('clicked');
+		}
+	});
+});
+
+</script>
+<body>
+	<a id="hide">Hide</a>
+	<div class="anim">
+		<div class="hide"><div class="text"><div id="w1">E</div><div id="w2">v</div><div id="w3"></div><div id="w4">l</div><div id="w5">v</div><div id="w6">e</div></div>	
+		</div>
+		<img class="plus" src="plus2.png" draggable=false/>
+	<div class="content">
+		<p>
+			Lorem ipsum dolor amet, consectetur adipiscing elit. Pellentesque ut lacus at velit consequat sodales. Ut posuere neque in molestie gravida. Integer neque lementum posuere purus. Nam convallis ipsum. Maecenas a vulputate ipsum.
+		</p>
+	</div>
+	</div>
+	
+</body>
+</html>
